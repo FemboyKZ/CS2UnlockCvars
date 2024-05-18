@@ -25,7 +25,7 @@ jobs:
     name: Build
     runs-on: ${{ matrix.os }}
     env:
-        HL2SDKCS2: ${{ github.workspace }}/CS2Fixes/sdk
+        HL2SDKCS2: ${{ github.workspace }}/CS2UnlockCvars/sdk
     container: ${{ matrix.container }}
     strategy:
       fail-fast: false
@@ -39,7 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          path: CS2Fixes
+          path: CS2UnlockCvars
           submodules: recursive
           fetch-depth: 0
 
@@ -62,7 +62,7 @@ jobs:
           cd ambuild && python setup.py install && cd ..
 
       - name: Build
-        working-directory: CS2Fixes
+        working-directory: CS2UnlockCvars
         shell: bash
         run: |
           mkdir build && cd build
@@ -73,7 +73,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}
-          path: CS2Fixes/build/package
+          path: CS2UnlockCvars/build/package
 
   release:
     name: Release

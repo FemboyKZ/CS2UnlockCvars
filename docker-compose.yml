@@ -1,6 +1,0 @@
-services:
-  cs2fixes-build:
-    image: ambuilder
-    build: .
-    volumes:
-      - '.:/app/source'

@@ -2,8 +2,8 @@
 import os
 import subprocess
 
-MMSPlugin.plugin_name = 'cs2fixes'
-MMSPlugin.plugin_alias = 'cs2fixes'
+MMSPlugin.plugin_name = 'cs2unlockcvars'
+MMSPlugin.plugin_alias = 'cs2uc'
 
 for sdk_target in MMSPlugin.sdk_targets:
   sdk = sdk_target.sdk
@@ -25,7 +25,7 @@ for sdk_target in MMSPlugin.sdk_targets:
     binary.compiler.cxxflags += ['-Wno-invalid-offsetof']
 
   binary.compiler.cxxincludes += [
-    os.path.join(builder.sourcePath, 'src', 'cs2_sdk'),
+    os.path.join(builder.sourcePath, 'src'),
     os.path.join(builder.sourcePath, 'src', 'utils'),
     os.path.join(builder.sourcePath, 'sdk', 'thirdparty', 'protobuf-3.21.8', 'src'),
     os.path.join(builder.sourcePath, 'vendor', 'funchook', 'include'),
@@ -53,35 +53,7 @@ for sdk_target in MMSPlugin.sdk_targets:
 
   binary.sources += [
     'src/cs2fixes.cpp',
-    'src/mempatch.cpp',
-    'src/patches.cpp',
     'src/cvars.cpp',
-    'src/adminsystem.cpp',
-    'src/commands.cpp',
-    'src/addresses.cpp',
-    'src/detours.cpp',
-    'src/entities.cpp',
-    'src/events.cpp',
-    'src/utils/entity.cpp',
-    'src/cs2_sdk/schema.cpp',
-    'src/ctimer.cpp',
-    'src/playermanager.cpp',
-    'src/gameconfig.cpp',
-    'src/gamesystem.cpp',
-    'src/votemanager.cpp',
-    'src/httpmanager.cpp',
-    'src/discord.cpp',
-    'src/map_votes.cpp',
-    'src/user_preferences.cpp',
-    'src/zombiereborn.cpp',
-    'src/customio.cpp',
-    'src/entitylistener.cpp',
-    'src/leader.cpp',
-    'src/idlemanager.cpp',
-    'sdk/entity2/entitysystem.cpp',
-    'sdk/entity2/entityidentity.cpp',
-    'sdk/entity2/entitykeyvalues.cpp',
-    'sdk/tier1/keyvalues3.cpp',
   ]
 
   protoc_builder = builder.tools.Protoc(protoc = sdk_target.protoc, sources = [
