@@ -89,7 +89,7 @@ const char *CS2UC::GetLicense()
 
 const char *CS2UC::GetVersion()
 {
-	return "v0.0.2";
+	return "v0.0.3";
 }
 
 const char *CS2UC::GetDate()
@@ -104,12 +104,12 @@ const char *CS2UC::GetLogTag()
 
 const char *CS2UC::GetAuthor()
 {
-	return "CS2UC, (mod by dots)";
+	return "CS2Fixes, (mod by dots)";
 }
 
 const char *CS2UC::GetDescription()
 {
-	return "Stripped CS2UC for Cvar Unlocker";
+	return "Stripped CS2Fixes for Cvar Unlocker";
 }
 
 const char *CS2UC::GetName()
