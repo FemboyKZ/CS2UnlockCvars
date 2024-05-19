@@ -18,7 +18,10 @@
  */
 
 #include "cs2fixes.h"
+#include "iserver.h"
 
+#include "tier0/dbg.h"
+#include "tier0/vprof.h"
 #include "common.h"
 #include "icvar.h"
 
@@ -55,8 +58,6 @@ void Panic(const char *msg, ...)
 	va_end(args);
 }
 
-class GameSessionConfiguration_t { };
-
 SH_DECL_HOOK3_void(ICvar, DispatchConCommand, SH_NOATTRIB, 0, ConCommandHandle, const CCommandContext&, const CCommand&);
 
 CS2Fixes g_CS2Fixes;
@@ -71,6 +72,8 @@ bool CS2Fixes::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 
 	Message( "Starting plugin.\n" );
 
+	SH_ADD_HOOK(ICvar, DispatchConCommand, g_pCVar, SH_MEMBER(this, &CS2Fixes::Hook_DispatchConCommand), false);
+
 	UnlockConVars();
 	UnlockConCommands();
 	ConVar_Register(FCVAR_RELEASE | FCVAR_CLIENT_CAN_EXECUTE | FCVAR_GAMEDLL);
@@ -82,18 +85,17 @@ bool CS2Fixes::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 
 bool CS2Fixes::Unload(char *error, size_t maxlen)
 {
+	SH_REMOVE_HOOK(ICvar, DispatchConCommand, g_pCVar, SH_MEMBER(this, &CS2Fixes::Hook_DispatchConCommand), false);
+
 	ConVar_Unregister();
 
 	return true;
 }
-
-void CS2Fixes::AllPluginsLoaded()
+void CS2Fixes::Hook_DispatchConCommand(ConCommandHandle cmdHandle, const CCommandContext& ctx, const CCommand& args)
 {
-	/* This is where we'd do stuff that relies on the mod or other plugins 
-	 * being initialized (for example, cvars added and events registered).
-	 */
+	VPROF_BUDGET("CS2Fixes::Hook_DispatchConCommand", "ConCommands");
 
-	Message( "AllPluginsLoaded\n" );
+	SH_CALL(g_pCVar, &ICvar::DispatchConCommand)(cmdHandle, ctx, args);
 }
 
 bool CS2Fixes::Pause(char *error, size_t maxlen)

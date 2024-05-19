@@ -20,6 +20,8 @@
 #pragma once
 
 #include <ISmmPlugin.h>
+#include "igameevents.h"
+#include <iserver.h>
 
 class CS2Fixes : public ISmmPlugin, public IMetamodListener
 {
@@ -28,9 +30,8 @@ public:
 	bool Unload(char *error, size_t maxlen);
 	bool Pause(char *error, size_t maxlen);
 	bool Unpause(char *error, size_t maxlen);
-	void AllPluginsLoaded();
-public: //hooks
 
+public:
 	void Hook_DispatchConCommand(ConCommandHandle cmd, const CCommandContext& ctx, const CCommand& args);
 
 

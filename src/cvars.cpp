@@ -46,12 +46,14 @@ void UnlockConVars()
 
 		if (!pCvar)
 			continue;
-		
+			
+		/*
 		for (int i = 0; i < sizeof(pUnCheatCvars) / sizeof(*pUnCheatCvars); i++)
 		{
 			if (!V_strcmp(pCvar->m_pszName, pUnCheatCvars[i]))
 				pCvar->flags &= ~FCVAR_CHEAT;
 		}
+		*/
 
 		if (!(pCvar->flags & g_iFlagsToRemove))
 			continue;
