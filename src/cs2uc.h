@@ -19,15 +19,28 @@
 
 #pragma once
 
-#include "cbaseentity.h"
-#include"../schema.h"
+#include <ISmmPlugin.h>
+#include <iserver.h>
 
-#define SF_TRIG_PUSH_ONCE 0x80
-
-class CEnvEntityMaker : public Z_CBaseEntity
+class CS2Fixes : public ISmmPlugin, public IMetamodListener
 {
 public:
-	DECLARE_SCHEMA_CLASS(CEnvEntityMaker);
+	bool Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late);
+	bool Unload(char *error, size_t maxlen);
+	bool Pause(char *error, size_t maxlen);
+	bool Unpause(char *error, size_t maxlen);
 
-	SCHEMA_FIELD(CUtlSymbolLarge, m_iszTemplate)
+public:
+	const char *GetAuthor();
+	const char *GetName();
+	const char *GetDescription();
+	const char *GetURL();
+	const char *GetLicense();
+	const char *GetVersion();
+	const char *GetDate();
+	const char *GetLogTag();
 };
+
+extern CS2Fixes g_CS2Fixes;
+
+PLUGIN_GLOBALVARS();

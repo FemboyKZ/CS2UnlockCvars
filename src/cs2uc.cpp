@@ -17,11 +17,8 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "cs2fixes.h"
-#include "iserver.h"
+#include "cs2uc.h"
 
-#include "tier0/dbg.h"
-#include "tier0/vprof.h"
 #include "common.h"
 #include "icvar.h"
 
@@ -58,8 +55,6 @@ void Panic(const char *msg, ...)
 	va_end(args);
 }
 
-SH_DECL_HOOK3_void(ICvar, DispatchConCommand, SH_NOATTRIB, 0, ConCommandHandle, const CCommandContext&, const CCommand&);
-
 CS2Fixes g_CS2Fixes;
 
 PLUGIN_EXPOSE(CS2Fixes, g_CS2Fixes);
@@ -67,35 +62,17 @@ bool CS2Fixes::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 {
 	PLUGIN_SAVEVARS();
 
-	// Required to get the IMetamodListener events
 	g_SMAPI->AddListener(this, this);
-
-	Message( "Starting plugin.\n" );
-
-	SH_ADD_HOOK(ICvar, DispatchConCommand, g_pCVar, SH_MEMBER(this, &CS2Fixes::Hook_DispatchConCommand), false);
 
 	UnlockConVars();
 	UnlockConCommands();
-	ConVar_Register(FCVAR_RELEASE | FCVAR_CLIENT_CAN_EXECUTE | FCVAR_GAMEDLL);
-
-	Message("Plugin successfully started!\n");
 
 	return true;
 }
 
 bool CS2Fixes::Unload(char *error, size_t maxlen)
 {
-	SH_REMOVE_HOOK(ICvar, DispatchConCommand, g_pCVar, SH_MEMBER(this, &CS2Fixes::Hook_DispatchConCommand), false);
-
-	ConVar_Unregister();
-
 	return true;
-}
-void CS2Fixes::Hook_DispatchConCommand(ConCommandHandle cmdHandle, const CCommandContext& ctx, const CCommand& args)
-{
-	VPROF_BUDGET("CS2Fixes::Hook_DispatchConCommand", "ConCommands");
-
-	SH_CALL(g_pCVar, &ICvar::DispatchConCommand)(cmdHandle, ctx, args);
 }
 
 bool CS2Fixes::Pause(char *error, size_t maxlen)
@@ -145,5 +122,5 @@ const char *CS2Fixes::GetName()
 
 const char *CS2Fixes::GetURL()
 {
-	return "https://github.com/Source2ZE/CS2Fixes";
+	return "https://github.com/jvnipers/CS2UnlockCvars";
 }

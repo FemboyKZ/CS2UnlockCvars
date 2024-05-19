@@ -14,7 +14,7 @@ for sdk_target in MMSPlugin.sdk_targets:
   try:
     version = subprocess.check_output(['git', 'describe', '--tags', '--long']).decode('ascii').strip()
   except subprocess.SubprocessError as e:
-    version = "1.7-dev"
+    version = "0.0.1-dev"
     print("git describe failed as there are no tags")
 	
   print(f'Setting version to "{version}"')
@@ -52,7 +52,7 @@ for sdk_target in MMSPlugin.sdk_targets:
 
 
   binary.sources += [
-    'src/cs2fixes.cpp',
+    'src/cs2uc.cpp',
     'src/cvars.cpp',
   ]
 
