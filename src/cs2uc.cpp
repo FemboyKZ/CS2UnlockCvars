@@ -1,6 +1,6 @@
 /**
  * =============================================================================
- * CS2Fixes
+ * CS2UC
  * Copyright (C) 2023-2024 Source2ZE
  * =============================================================================
  *
@@ -23,11 +23,6 @@
 #include "icvar.h"
 
 #include "tier0/memdbgon.h"
-
-double g_flUniversalTime;
-float g_flLastTickedTime;
-bool g_bHasTicked;
-int g_iRoundNum = 0;
 
 void Message(const char *msg, ...)
 {
@@ -55,10 +50,10 @@ void Panic(const char *msg, ...)
 	va_end(args);
 }
 
-CS2Fixes g_CS2Fixes;
+CS2UC g_CS2UC;
 
-PLUGIN_EXPOSE(CS2Fixes, g_CS2Fixes);
-bool CS2Fixes::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late)
+PLUGIN_EXPOSE(CS2UC, g_CS2UC);
+bool CS2UC::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late)
 {
 	PLUGIN_SAVEVARS();
 	
@@ -72,57 +67,57 @@ bool CS2Fixes::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 	return true;
 }
 
-bool CS2Fixes::Unload(char *error, size_t maxlen)
+bool CS2UC::Unload(char *error, size_t maxlen)
 {
 	return true;
 }
 
-bool CS2Fixes::Pause(char *error, size_t maxlen)
+bool CS2UC::Pause(char *error, size_t maxlen)
 {
 	return true;
 }
 
-bool CS2Fixes::Unpause(char *error, size_t maxlen)
+bool CS2UC::Unpause(char *error, size_t maxlen)
 {
 	return true;
 }
 
-const char *CS2Fixes::GetLicense()
+const char *CS2UC::GetLicense()
 {
 	return "GPL v3 License";
 }
 
-const char *CS2Fixes::GetVersion()
+const char *CS2UC::GetVersion()
 {
-	return CS2FIXES_VERSION; // defined by the build script
+	return "v0.0.2";
 }
 
-const char *CS2Fixes::GetDate()
+const char *CS2UC::GetDate()
 {
 	return __DATE__;
 }
 
-const char *CS2Fixes::GetLogTag()
+const char *CS2UC::GetLogTag()
 {
 	return "CS2UnlockCvars";
 }
 
-const char *CS2Fixes::GetAuthor()
+const char *CS2UC::GetAuthor()
 {
-	return "CS2Fixes, (mod by dots)";
+	return "CS2UC, (mod by dots)";
 }
 
-const char *CS2Fixes::GetDescription()
+const char *CS2UC::GetDescription()
 {
-	return "Stripped CS2Fixes for Cvar Unlocker";
+	return "Stripped CS2UC for Cvar Unlocker";
 }
 
-const char *CS2Fixes::GetName()
+const char *CS2UC::GetName()
 {
 	return "CS2UnlockCvars";
 }
 
-const char *CS2Fixes::GetURL()
+const char *CS2UC::GetURL()
 {
 	return "https://github.com/jvnipers/CS2UnlockCvars";
 }
