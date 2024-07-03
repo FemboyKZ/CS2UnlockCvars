@@ -9,7 +9,8 @@
     },
     "platforms": {
         "windows": [
-            "x86"
+            "x86",
+            "x86_64"
         ],
         "linux": [
             "x86",
@@ -83,6 +84,14 @@
                 "lib/public/tier0.lib",
                 "lib/public/tier1.lib",
                 "lib/public/vstdlib.lib"
+            ]
+        },
+        "x86_64": {
+            "libs": [
+                "lib/public/win64/mathlib.lib",
+                "lib/public/win64/tier1.lib",
+                "lib/public/win64/tier0.lib",
+                "lib/public/win64/vstdlib.lib"
             ]
         }
     }
