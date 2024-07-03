@@ -1,6 +1,9 @@
-[submodule "sdk"]
-	path = sdk
+[submodule "hl2sdk-cs2"]
+	path = hl2sdk-cs2
 	url = https://github.com/alliedmodders/hl2sdk.git
 [submodule "hl2sdk-manifests"]
 	path = hl2sdk-manifests
 	url = https://github.com/alliedmodders/hl2sdk-manifests
+[submodule "metamod-source"]
+	path = metamod-source
+	url = https://github.com/alliedmodders/metamod-source
