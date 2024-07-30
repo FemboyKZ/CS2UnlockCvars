@@ -9,7 +9,7 @@ The plugin unlocks all dev only and hidden convars and commands.
 ## Installation
 
 - Install [Metamod](https://www.sourcemm.net/downloads.php?branch=dev)
-- Download the [latest release package](https://github.com/jvnipers/CS2UnlockCvars/releases/latest) for your OS
+- Download the [latest release package](https://github.com/FemboyKZ/CS2UnlockCvars/releases/latest) for your OS
 - Extract the package contents into `game/csgo` on your server
 
 ## Compilation
