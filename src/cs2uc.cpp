@@ -119,5 +119,5 @@ const char *CS2UC::GetName()
 
 const char *CS2UC::GetURL()
 {
-	return "https://github.com/jvnipers/CS2UnlockCvars";
+	return "https://github.com/FemboyKZ/CS2UnlockCvars";
 }

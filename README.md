@@ -22,7 +22,7 @@ The plugin unlocks all dev only and hidden convars and commands.
 ### Instructions
 
 ```bash
-git clone https://github.com/jvnipers/CS2UnlockCvars/ && cd CS2UnlockCvars
+git clone https://github.com/FemboyKZ/CS2UnlockCvars/ && cd CS2UnlockCvars
 git submodule update --init --recursive
 
 export MMSOURCE112=/path/to/metamod/
